@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visitor Log — Visitor Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-icon">🏛️</span>
+      <span>VMS</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Check-In</a>
+      <a href="visitors.html" class="nav-link active">Visitor Log</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="icon">📋</div>
+    <h1>Visitor Log</h1>
+    <p>View and manage all visitor records</p>
+
+    <!-- Stats Chips -->
+    <div class="stats-bar">
+      <div class="stat-chip">
+        <span class="dot blue"></span>
+        Total: <span id="statTotal">0</span>
+      </div>
+      <div class="stat-chip">
+        <span class="dot green"></span>
+        In: <span id="statIn">0</span>
+      </div>
+      <div class="stat-chip">
+        <span class="dot red"></span>
+        Out: <span id="statOut">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Visitor List Card -->
+    <section class="card">
+      <div class="list-header">
+        <h2 class="card-title">
+          <span class="title-icon blue">📄</span>
+          All Visitors
+        </h2>
+        <div class="list-controls">
+          <!-- Status Filter buttons -->
+          <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="IN">In</button>
+            <button class="filter-btn" data-filter="OUT">Out</button>
+          </div>
+          <!-- Search -->
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name..."
+              class="search-box"
+            />
+          </div>
+        </div>
+
+      <!-- Date Filter Row -->
+      <div class="date-filter-row">
+        <div class="date-field">
+          <label for="dateFrom">From</label>
+          <input type="date" id="dateFrom" class="date-input" />
+        </div>
+        <div class="date-field">
+          <label for="dateTo">To</label>
+          <input type="date" id="dateTo" class="date-input" />
+        </div>
+        <div class="date-presets">
+          <button class="preset-btn active" data-range="all">All Time</button>
+          <button class="preset-btn" data-range="today">Today</button>
+          <button class="preset-btn" data-range="week">This Week</button>
+          <button class="preset-btn" data-range="month">This Month</button>
+        </div>
+        <button class="btn btn-clear-date" id="clearDateBtn">Clear Dates</button>
+      </div>
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyMsg" class="empty-msg">
+        <span class="empty-icon">📭</span>
+        No visitors recorded yet.
+        <a href="index.html">Check-in a visitor →</a>
+      </div>
+
+      <!-- Visitor Table -->
+      <div class="table-wrap">
+        <table id="visitorTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Purpose</th>
+              <th>Host</th>
+              <th>Check-In</th>
+              <th>Check-Out</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="visitorBody">
+            <!-- Rows inserted by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Row count footer -->
+      <div id="tableFooter" class="table-footer" style="display:none;">
+        Showing <span id="rowCount">0</span> visitor(s)
+      </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section class="card admin-card">
+      <h2 class="card-title">
+        <span class="title-icon red">🔒</span>
+        Admin Panel
+      </h2>
+      <p class="admin-desc">Clear all visitor records from the database. This action cannot be undone.</p>
+      <div class="admin-row">
+        <input type="password" id="adminPassword" placeholder="Enter admin password" class="admin-input" />
+        <button class="btn btn-danger" id="clearDataBtn">Clear All Data</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Visitor Management System &copy; 2026 — College Demo Project</p>
+  </footer>
+
+  <script src="visitors.js"></script>
+</body>
+</html>
